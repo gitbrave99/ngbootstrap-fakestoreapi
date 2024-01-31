@@ -1,0 +1,97 @@
+<div class="d-flex justify-content-center mt-3 mb-3">
+  <div class="btn-group" role="group" aria-label="Basic outlined example">
+    <button type="button" class="btn btn-outline-primary" *ngIf="listCategory.length>0" (click)="loadProducts()"
+      [class.active]="selectedCategory === 'none'">None {{productCounts['']}}</button>
+
+    <button type="button" class="btn btn-outline-primary" *ngFor="let cat of listCategory"
+      (click)="loadProductsByCategory(cat)" [class.active]="selectedCategory === cat">
+      {{cat|titlecase}}
+      <span class="badge text-bg-primary">{{productCounts[cat]}}</span>
+    </button>
+
+    <button type="button" class="btn btn-info" *ngIf="listCategory.length>0" (click)="onChangeSortProducts()"
+      [class.active]="selectedCategory === 'none'">
+      <i *ngIf="isAscOrder" class="bi bi-sort-alpha-up"></i>
+      <i *ngIf="!isAscOrder" class="bi bi-sort-alpha-up-alt"></i>
+    </button>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-hover table-striped table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Category</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listProduct; let i = index">
+        <td>{{item.id}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.category}}</td>
+        <td>
+          <p class="text-center">
+            <span class="badge rounded-pill text-bg-warning"><i class="bi bi-suit-heart-fill"></i>
+              {{item?.rating?.rate}}</span>
+            <span class="badge rounded-pill text-bg-primary"><i
+                class="bi bi-clipboard-fill"></i>{{item.rating?.count}}</span>
+          </p>
+        </td>
+        <td>
+          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#mdVer"
+            (click)="onSelectProduct(item)"><i class="bi bi-eye-fill"></i></button>
+          <!-- <button class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill text-white"></i></button> -->
+          <button class="btn btn-danger btn-sm" (click)="openModalDelete()"><i class="bi bi-trash"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-modal-generic [isModalOpen]="isModalViewOpen" title="mdVer">
+  <h4 class="text-muted text-center">{{selectedProduct.title}}</h4>
+  <h5 class="text-muted text-center">{{selectedProduct.category}}</h5>
+  <p>{{selectedProduct.description}}</p>
+  <h3 class="text-muted text-center">${{selectedProduct.price}}</h3>
+  <p class="text-center">
+    <span class="badge rounded-pill text-bg-warning"><i class="bi bi-suit-heart-fill"></i>
+      {{selectedProduct?.rating?.rate}}</span>
+    <span class="badge rounded-pill text-bg-primary"><i
+        class="bi bi-clipboard-fill"></i>{{selectedProduct.rating?.count}}</span>
+  </p>
+  <div class="modal-footer">
+    <!-- <button type="button" class="btn btn-secondary">Cerrar</button> -->
+    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="openModalView()">Acept</button>
+  </div>
+</app-modal-generic>
+
+
+
+<app-modal-generic [isModalOpen]="isModalDeleteOpen" title="mdDelete">
+  <h5>Confirm to delete</h5>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="openModalDelete()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="onDeleteProduct()">Confirm</button>
+  </div>
+</app-modal-generic>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3 ">
+  <div id="liveToast" class="toast border border-success" [class.show]="isOpenNotification" role="alert"
+    aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto text-success">Success</strong>
+      <!-- <small>11 mins ago</small> -->
+      <button type="button" class="btn-close" aria-label="Close" (click)="openNotification()"></button>
+    </div>
+    <div class="toast-body">
+      Product <b>{{deletedProduct.title}}</b> deleted successfull
+    </div>
+  </div>
+</div>

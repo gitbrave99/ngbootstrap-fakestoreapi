@@ -1,0 +1,14 @@
+{
+    "firstName":"re",
+    "lastName":"kil",
+    "email":"algo",
+    "gender":"FEMALE",
+    "address":{
+        "country":"el salvador",
+        "postCode":"pl12",
+        "city":"Santa Ana"
+    },
+    "createdAt":"",
+    "favouriteSubjects":["matsh","english","it"],
+    "totalSpentInBooks":0.00
+}
