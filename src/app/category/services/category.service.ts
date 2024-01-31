@@ -21,8 +21,8 @@ export class CategoryService {
   }
 
   // You can also use limit(Number) and sort(asc|desc) as a query string to get your ideal results
-  public getProductByCategory(pCategory: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/products/category/${pCategory}`);
+  public getProductByCategory(pCategory: string,sortMethod:string="asc"): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/products/category/${pCategory}?sort=${sortMethod}`);
   }
 
   public getCountProductByCategory(pCategory: string):Observable<number> {

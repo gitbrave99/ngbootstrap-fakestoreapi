@@ -1,3 +1,11 @@
 
-<span *ngFor="let item of listCategory"
-class="badge text-bg-primary">{{item}}</span>
+<div class="d-flex justify-content-center mt-3 mb-3">
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+      <button type="button" class="btn btn-outline-primary" *ngFor="let cat of listCategory">
+        {{cat|titlecase}}
+       
+      </button>
+  
+ 
+    </div>
+  </div>

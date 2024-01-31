@@ -5,6 +5,7 @@ import { ProductRoutingModule } from './product-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductHomePageComponent } from './pages/product-home-page/product-home-page.component';
 import { ModalGenericComponent } from './components/modal-generic/modal-generic.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ModalGenericComponent } from './components/modal-generic/modal-generic.
   imports: [
     CommonModule,
     ProductRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   exports:[
     ProductHomePageComponent

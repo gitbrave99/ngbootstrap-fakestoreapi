@@ -17,7 +17,7 @@
   </div>
 </div>
 <div class="table-responsive">
-  <table class="table table-hover table-striped table-bordered">
+  <table class="table table-hover  table-bordered">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -30,27 +30,36 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of listProduct; let i = index">
-        <td>{{item.id}}</td>
-        <td>{{item.title}}</td>
-        <td>{{item.description}}</td>
-        <td>{{item.price}}</td>
-        <td>{{item.category}}</td>
-        <td>
-          <p class="text-center">
-            <span class="badge rounded-pill text-bg-warning"><i class="bi bi-suit-heart-fill"></i>
-              {{item?.rating?.rate}}</span>
-            <span class="badge rounded-pill text-bg-primary"><i
-                class="bi bi-clipboard-fill"></i>{{item.rating?.count}}</span>
-          </p>
-        </td>
-        <td>
-          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#mdVer"
-            (click)="onSelectProduct(item)"><i class="bi bi-eye-fill"></i></button>
-          <!-- <button class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill text-white"></i></button> -->
-          <button class="btn btn-danger btn-sm" (click)="openModalDelete()"><i class="bi bi-trash"></i></button>
+      
+      <tr *ngIf="isLoading; else datadb">
+        <td colspan="9">
+          <app-spinner-table></app-spinner-table>
         </td>
       </tr>
+
+      <ng-template  #datadb>
+        <tr *ngFor="let item of listProduct; let i = index">
+          <td>{{item.id}}</td>
+          <td>{{item.title}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.category}}</td>
+          <td>
+            <p class="text-center">
+              <span class="badge rounded-pill text-bg-warning"><i class="bi bi-suit-heart-fill"></i>
+                {{item?.rating?.rate}}</span>
+              <span class="badge rounded-pill text-bg-primary"><i
+                  class="bi bi-clipboard-fill"></i> {{item.rating?.count}}</span>
+            </p>
+          </td>
+          <td>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#mdVer"
+              (click)="onSelectProduct(item)"><i class="bi bi-eye-fill"></i></button>
+            <!-- <button class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill text-white"></i></button> -->
+            <button class="btn btn-danger btn-sm" (click)="openModalDelete()"><i class="bi bi-trash"></i></button>
+          </td>
+        </tr>
+      </ng-template>
     </tbody>
   </table>
 </div>

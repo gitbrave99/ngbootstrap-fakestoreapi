@@ -22,7 +22,8 @@ export class ProductHomePageComponent implements OnInit {
   public isModalViewOpen: boolean = false;
   public isModalDeleteOpen: boolean = false;
   public isOpenNotification: boolean = false;
-  public isAscOrder: boolean = false;
+  public isAscOrder: boolean = true;
+  public isLoading:boolean=false;
 
   constructor(
     private productService: ProductService,
@@ -40,28 +41,48 @@ export class ProductHomePageComponent implements OnInit {
     this.categoryService.getAllCategories().
       subscribe((resCats) => {
         this.listCategory = resCats;
-        this.loadCountProductsByCat(resCats)
+        this.loadCountProductsByCat()
       });
   }
 
-  public loadProducts() {
+  public loadProducts(sortMethod:string="asc") {
     this.selectedCategory = "none";
-    this.productService.getAllProducts()
-      .subscribe((resProduct) => {
-        this.listProduct = resProduct;
-
+    this.isAscOrder= sortMethod==='asc'?true:false;
+    this.isLoading=!this.isLoading;
+    this.productService.getAllProducts(sortMethod)
+      .subscribe({
+        next:(resprod)=>{
+          this.listProduct = resprod; 
+        },
+        error:(errr)=>{
+          console.log("eeror: ", errr);
+          
+        },
+        complete:()=>{
+          this.isLoading=false
+        }
       });
   }
 
-  public loadProductsByCategory(pCategory: string, sortMethod:string="") {
+  public loadProductsByCategory(pCategory: string, sortMethod:string="asc") {
     this.selectedCategory = pCategory;
-    this.categoryService.getProductByCategory(pCategory+sortMethod)
-      .subscribe((resProd) => {
-        this.listProduct = resProd;
+    this.isAscOrder= sortMethod==='asc'?true:false;
+    this.isLoading=!this.isLoading;
+    this.categoryService.getProductByCategory(pCategory,sortMethod)
+      .subscribe({
+        next:(resProd) => {
+          this.listProduct = resProd;
+        },
+        error:(err)=>{
+
+        },
+        complete:() => {
+          this.isLoading=false;
+        }
       })
   }
 
-  public loadCountProductsByCat(listCats: string[]) {
+  public loadCountProductsByCat() {
     this.listCategory.forEach(cat => {
       this.categoryService.getCountProductByCategory(cat)
         .subscribe((resLength) => {
@@ -102,8 +123,14 @@ export class ProductHomePageComponent implements OnInit {
   }
 
   public onChangeSortProducts() {
-    let categorySorted =this.isAscOrder ? "?sort=asc" : "?sort=desc"
     this.isAscOrder = !this.isAscOrder;
+    let categorySorted = this.isAscOrder ? "asc" : "desc"
+    console.log("is sorted: ", this.isAscOrder);
+    
+    if (this.selectedCategory==="none") {
+      this.loadProducts(categorySorted);
+      return;
+    }
     this.loadProductsByCategory(this.selectedCategory,categorySorted)
 
   }

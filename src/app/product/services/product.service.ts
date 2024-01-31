@@ -15,8 +15,8 @@ export class ProductService {
     private http: HttpClient
   ) { }
 
-  public getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/products`);
+  public getAllProducts(sortMethod:string="asc"): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/products?sort=${sortMethod}`);
   }
 
   public getProductById(pIdProduct: string): Observable<Product> {
