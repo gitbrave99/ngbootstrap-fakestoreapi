@@ -30,14 +30,14 @@
       </tr>
     </thead>
     <tbody>
-      
+
       <tr *ngIf="isLoading; else datadb">
         <td colspan="9">
           <app-spinner-table></app-spinner-table>
         </td>
       </tr>
 
-      <ng-template  #datadb>
+      <ng-template #datadb>
         <tr *ngFor="let item of listProduct; let i = index">
           <td>{{item.id}}</td>
           <td>{{item.title}}</td>
@@ -46,10 +46,12 @@
           <td>{{item.category}}</td>
           <td>
             <p class="text-center">
-              <span class="badge rounded-pill text-bg-warning"><i class="bi bi-suit-heart-fill"></i>
-                {{item?.rating?.rate}}</span>
-              <span class="badge rounded-pill text-bg-primary"><i
-                  class="bi bi-clipboard-fill"></i> {{item.rating?.count}}</span>
+              <span class="badge rounded-pill text-bg-warning" *ngIf="item.rating">
+                <i class="bi bi-suit-heart-fill"></i>
+                {{item.rating.rate}}</span>
+              <span class="badge rounded-pill text-bg-primary" *ngIf="item.rating">
+                <i class="bi bi-clipboard-fill"></i>
+                {{item.rating.count}}</span>
             </p>
           </td>
           <td>
@@ -70,10 +72,15 @@
   <p>{{selectedProduct.description}}</p>
   <h3 class="text-muted text-center">${{selectedProduct.price}}</h3>
   <p class="text-center">
-    <span class="badge rounded-pill text-bg-warning"><i class="bi bi-suit-heart-fill"></i>
-      {{selectedProduct?.rating?.rate}}</span>
-    <span class="badge rounded-pill text-bg-primary"><i
-        class="bi bi-clipboard-fill"></i>{{selectedProduct.rating?.count}}</span>
+    <span class="badge rounded-pill text-bg-warning" *ngIf="selectedProduct.rating">
+      <i class="bi bi-suit-heart-fill"></i>
+      {{selectedProduct.rating.rate}}
+    </span>
+
+    <span class="badge rounded-pill text-bg-primary" *ngIf="selectedProduct.rating">
+      <i class="bi bi-clipboard-fill"></i>
+      {{selectedProduct.rating.count}}
+    </span>
   </p>
   <div class="modal-footer">
     <!-- <button type="button" class="btn btn-secondary">Cerrar</button> -->
