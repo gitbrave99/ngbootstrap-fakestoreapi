@@ -1,4 +1,13 @@
-# Library
+# FakeStore App
+This app is building with:
+- Bootstrap 5
+- Angular v17
+- FakeStore API
+
+
+
+Visit the page in progress: https://gitbrave99.github.io/ngbootstrap-fakestoreapi/category
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
 
