@@ -1,0 +1,23 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of list">
+        <th scope="row"></th>
+        <td>{{item.name.firstname}} {{item.name.lastname}}</td>
+        <td>{{item.username}}</td>
+        <td>{{item.email}}</td>
+        <td><b>City:</b> {{item.address.city}} <b>Street:</b> {{item.address.street}} <b>ZipCode:</b> {{item.address.zipcode}}</td>
+        <td>{{item.phone}}</td>
+        
+      </tr>
+    </tbody>
+  </table>
