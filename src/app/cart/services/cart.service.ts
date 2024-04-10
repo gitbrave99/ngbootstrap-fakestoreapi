@@ -15,18 +15,24 @@ export class CartService {
     private http: HttpClient
   ) { }
 
-
-  getAllCarts(): Observable<Cart[]> {
-    return this.http.get<Cart[]>(`${this.baseUrl}/carts`)
+  getCarts(): Observable<Cart[]> {
+    return this.http.get<Cart[]>(`${this.baseUrl}/carts`);
   }
 
-  getTotalQuantity() {
+  getCartsSortRows(sortBy: string, rows: string): Observable<Cart[]> {
+    return this.http.get<Cart[]>(`${this.baseUrl}/carts?limit=${rows}&sort=${sortBy}`);
+  }
+
+  getCartsByRange(startDate: string, endDate: string): Observable<Cart[]> {
+    return this.http.get<Cart[]>(`${this.baseUrl}/carts?startdate=${startDate}&enddate=${endDate}`);
+  }
+
+  getTotalQuantity(): Observable<number> {
     return this.http.get<Cart[]>(`${this.baseUrl}/carts`)
       .pipe(
         map(carts => carts.reduce((total: number, cart: Cart) => {
-          return total + cart.products.reduce((subtotal, prod)=> subtotal + prod.quantity,0)
+          return total + cart.products.reduce((subtotal, prod) => subtotal + prod.quantity, 0)
         }, 0),)
       )
   }
-
 }

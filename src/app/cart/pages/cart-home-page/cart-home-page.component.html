@@ -2,27 +2,31 @@
     <div class="d-flex justify-content-between align-items-center">
         <div class="">
             <label for="startDate" class="form-label p-0 m-0">Sort by</label> <br>
-            <button type="button" class="btn btn-info" [class.active]="selectedCategory === 'none'">
+            <button type="button" class="btn btn-info" (click)="changeSortBy()"
+                [class.active]="selectedCategory === 'none'">
                 <i *ngIf="isAscOrder" class="bi bi-sort-alpha-up"></i>
                 <i *ngIf="!isAscOrder" class="bi bi-sort-alpha-up-alt"></i>
             </button>
         </div>
+        <div class="">
+            <label for="startDate" class="form-label p-0 m-0">Rows</label>
+            <select class="form-select" aria-label="rows per page" [(ngModel)]="rowPerPage"
+                (change)="getCartsSortByRowsPage()">
+                <option value='' disabled selected>select</option>
+                <option value="1">1</option>
+                <option value="5">5</option>
+                <option value="20">20</option>
+            </select>
+        </div>
         <div>
             <label for="startDate" class="form-label p-0 m-0">Start Date</label>
-            <input type="date" class="form-control" id="startDate">
+            <input type="date" class="form-control" id="startDate" name="startDate" [(ngModel)]="startDate"
+                (ngModelChange)="getCartsByRange()">
         </div>
         <div>
             <label for="endDate" class="form-label p-0 m-0">End Date</label>
-            <input type="date" class="form-control" id="endDate">
-        </div>
-        <div class="">
-            <label for="startDate" class="form-label p-0 m-0">Rows</label>
-            <select class="form-select" aria-label="rows per page">
-                <option selected>5</option>
-                <option value="1">10</option>
-                <option value="2">15</option>
-                <option value="3">20</option>
-            </select>
+            <input type="date" class="form-control" id="endDate" name="endDate" [(ngModel)]="endDate"
+                (ngModelChange)="getCartsByRange()">
         </div>
     </div>
 </div>
@@ -38,13 +42,21 @@
         </tr>
     </thead>
     <tbody class="text-center">
-        <tr *ngFor="let cart of listCarts">
-            <td>{{cart.id}}</td>
-            <td>{{cart.userId}}</td>
-            <td>{{cart.date}}</td>
-            <td>{{cart.products.length}}</td>
-            <td>{{getTotalQuantityByCart(cart.products) }}</td>
+
+        <tr *ngIf="isLoading; else datadb">
+            <td colspan="9">
+                <app-spinner-table></app-spinner-table>
+            </td>
         </tr>
+        <ng-template #datadb>
+            <tr *ngFor="let cart of listCarts">
+                <td>{{cart.id}}</td>
+                <td>{{cart.userId}}</td>
+                <td>{{cart.date}}</td>
+                <td>{{cart.products.length}}</td>
+                <td>{{getTotalQuantityByCart(cart.products) }}</td>
+            </tr>
+        </ng-template>
     </tbody>
     <tfoot>
         <tr>
@@ -55,7 +67,7 @@
         </tr>
         <tr>
             <td class="text-end" colspan="4"><b>Total Quantity:</b></td>
-            <td class="text-center"> <b>12</b></td>
+            <td class="text-center"> <b>{{totalquantity}}</b></td>
         </tr>
     </tfoot>
 </table>
