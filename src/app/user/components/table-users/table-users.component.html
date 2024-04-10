@@ -1,5 +1,6 @@
-<table class="table">
-    <thead>
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
@@ -7,17 +8,80 @@
         <th scope="col">Email</th>
         <th scope="col">Address</th>
         <th scope="col">Phone</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of list">
         <th scope="row"></th>
-        <td>{{item.name.firstname}} {{item.name.lastname}}</td>
+        <td class="text-capitalize">{{item.name.firstname}} {{item.name.lastname}}</td>
         <td>{{item.username}}</td>
         <td>{{item.email}}</td>
-        <td><b>City:</b> {{item.address.city}} <b>Street:</b> {{item.address.street}} <b>ZipCode:</b> {{item.address.zipcode}}</td>
+        <td style="display: flex; flex-direction: column; align-items: flex-start;">
+          <span>
+            <b>City:</b>
+            <span class="badge text-bg-primary"> {{item.address.city}} </span>
+          </span>
+          <span>
+            <b>Street:</b>
+            <span class="badge text-bg-secondary text-capitalize"> {{item.address.city}} {{item.address.street}}</span>
+          </span>
+          <span>
+            <b>ZipCode:</b>
+            <span class="badge text-bg-success"> {{item.address.zipcode}}</span>
+          </span>
+        </td>
         <td>{{item.phone}}</td>
-        
+        <td>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            See Cart
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">User Cart</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-bordered  table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Id</th>
+                <th scope="col">Quantity</th>
+              </tr>
+            </thead>
+            <tbody clas>
+              <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>23</td>
+              </tr>
+            </tbody>
+            <tfoot class="text-end bg-secondary">
+              <tr>
+                <td colspan="2">Total Quantity:</td>
+                <td> 12</td>
+              </tr>
+              <tr>
+                <td colspan="2">Total Cart:</td>
+                <td> 12</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

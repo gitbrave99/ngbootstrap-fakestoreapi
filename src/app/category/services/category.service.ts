@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environments } from '../../../environments/environments';
 import { Observable, map } from 'rxjs';
 import { Product } from '../../shared/interfaces/Product.interface';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  private baseUrl: string = environments.baseUrl;
+  private baseUrl: string = environment.baseUrl;
 
   constructor(
     private http: HttpClient

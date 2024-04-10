@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CartRoutingModule } from './cart-routing.module';
 import { CartHomePageComponent } from './pages/cart-home-page/cart-home-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { CartHomePageComponent } from './pages/cart-home-page/cart-home-page.com
   ],
   imports: [
     CommonModule,
-    CartRoutingModule
+    CartRoutingModule,
+    HttpClientModule
   ],
   exports:[
     CartHomePageComponent

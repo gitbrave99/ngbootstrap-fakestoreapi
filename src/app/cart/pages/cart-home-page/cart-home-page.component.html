@@ -1,1 +1,61 @@
-<p>cart-home-page works!</p>
+<div class="card mt-2 mb-2 p-2">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="">
+            <label for="startDate" class="form-label p-0 m-0">Sort by</label> <br>
+            <button type="button" class="btn btn-info" [class.active]="selectedCategory === 'none'">
+                <i *ngIf="isAscOrder" class="bi bi-sort-alpha-up"></i>
+                <i *ngIf="!isAscOrder" class="bi bi-sort-alpha-up-alt"></i>
+            </button>
+        </div>
+        <div>
+            <label for="startDate" class="form-label p-0 m-0">Start Date</label>
+            <input type="date" class="form-control" id="startDate">
+        </div>
+        <div>
+            <label for="endDate" class="form-label p-0 m-0">End Date</label>
+            <input type="date" class="form-control" id="endDate">
+        </div>
+        <div class="">
+            <label for="startDate" class="form-label p-0 m-0">Rows</label>
+            <select class="form-select" aria-label="rows per page">
+                <option selected>5</option>
+                <option value="1">10</option>
+                <option value="2">15</option>
+                <option value="3">20</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered  table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">User</th>
+            <th scope="col">Date</th>
+            <th scope="col">Products By Cart</th>
+            <th scope="col">Quantity Total</th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        <tr *ngFor="let cart of listCarts">
+            <td>{{cart.id}}</td>
+            <td>{{cart.userId}}</td>
+            <td>{{cart.date}}</td>
+            <td>{{cart.products.length}}</td>
+            <td>{{getTotalQuantityByCart(cart.products) }}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="text-end" colspan="3"><b>Total Products:</b></td>
+            <td class="text-center">
+                <b>{{totalProducts}}</b>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-end" colspan="4"><b>Total Quantity:</b></td>
+            <td class="text-center"> <b>12</b></td>
+        </tr>
+    </tfoot>
+</table>
