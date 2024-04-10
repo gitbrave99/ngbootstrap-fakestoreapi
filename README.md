@@ -1,7 +1,7 @@
 # FakeStore App
 This app is building with:
 - Bootstrap 5
-- Angular v17
+- Angular v17 with modules (--standalone false)
 - FakeStore API
 
 
