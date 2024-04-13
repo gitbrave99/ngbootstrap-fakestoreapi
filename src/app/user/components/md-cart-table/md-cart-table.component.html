@@ -1,0 +1,39 @@
+<div [class]="'modal fade'" [class.show]="isModalOPen" [style]="{'display':isModalOPen?'block':'none'}"
+    id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">User Cart</h1>
+                <button type="button" class="btn-close" (click)="onHideModal()"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered  table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Product Id</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody clas>
+                            <tr *ngFor="let item of cartUserList">
+                                
+                            </tr>
+                        </tbody>
+                        <tfoot class="text-end bg-secondary">
+                            <tr>
+                                <td colspan="2">Total Quantity:</td>
+                                <td> 12</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Total Cart:</td>
+                                <td> 12</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>

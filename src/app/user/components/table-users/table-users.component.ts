@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { User } from '../../interfaces/User.interface';
+import { UserService } from '../../services/user.service';
+import { Cart, Product } from '../../../cart/interfaces/Cart.interface';
 
 @Component({
   selector: 'app-table-users',
@@ -8,8 +10,42 @@ import { User } from '../../interfaces/User.interface';
 })
 export class TableUsersComponent {
 
+  public isOpenModal: boolean = false;
+  public idUserSelected:number=0;
+  public cartUserList:Cart[]=[];
+  public productList:Product[]=[];
+
+
 
   @Input()
-  public list:User[]=[]
+  public list: User[] = []
+
+  constructor(
+    private userService:UserService
+  ){
+
+  }
+
+  showModal() {
+    this.isOpenModal = true;
+  }
+
+  hideModal() {
+    this.isOpenModal = false;
+    console.log("ocultando");
+  }
+
+  onSelectUser(id:number){
+    this.idUserSelected=id
+    console.log("selected user: ", id);
+    this.userService.getCartByUser(id)
+    .subscribe((data)=>{
+      console.log("seec: ", data);
+      this.showModal();
+      this.cartUserList= data
+
+      
+    })
+  }
 
 }

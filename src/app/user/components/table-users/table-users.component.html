@@ -33,7 +33,7 @@
         </td>
         <td>{{item.phone}}</td>
         <td>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" class="btn btn-primary" (click)="onSelectUser(item.id)">
             See Cart
           </button>
         </td>
@@ -42,46 +42,4 @@
   </table>
 </div>
 
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">User Cart</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="table-responsive">
-          <table class="table table-bordered  table-hover">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Product Id</th>
-                <th scope="col">Quantity</th>
-              </tr>
-            </thead>
-            <tbody clas>
-              <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>23</td>
-              </tr>
-            </tbody>
-            <tfoot class="text-end bg-secondary">
-              <tr>
-                <td colspan="2">Total Quantity:</td>
-                <td> 12</td>
-              </tr>
-              <tr>
-                <td colspan="2">Total Cart:</td>
-                <td> 12</td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<app-md-cart-table [isModalOPen]="isOpenModal" (hideModal)="hideModal()" [cartUserList]="cartUserList"/>
