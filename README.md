@@ -4,6 +4,13 @@ This app is building with:
 - Angular v17 with modules (--standalone false)
 - FakeStore API
 
+  Endpoints consumidos:
+  - Category
+  - User
+  - Cart
+  - Products
+  
+
 
 
 Visit the page in progress: https://gitbrave99.github.io/ngbootstrap-fakestoreapi/category
