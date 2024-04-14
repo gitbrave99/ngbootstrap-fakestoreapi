@@ -51,6 +51,8 @@ export class CartHomePageComponent implements OnInit {
   }
 
   getTotalCarts() {
+    console.log("cargando total cars");
+    
     this.totalProducts = this.listCarts.reduce((acumularor: number, item: Cart) => {
       return acumularor + item.products.length
     }, 0);
@@ -64,7 +66,6 @@ export class CartHomePageComponent implements OnInit {
 
 
   getCartsByRange() {
-    console.log("startdate", this.startDate, " enddate: ", this.endDate);
     if (this.startDate.length > 0 && this.endDate.length > 0) {
       this.reloadingData()
       this.cartService.getCartsByRange(this.startDate, this.endDate)

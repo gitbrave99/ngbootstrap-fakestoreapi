@@ -22,8 +22,6 @@ console.log("listando");
   this.userService.getAllUsers().subscribe({
     next:(list)=>{
       this.usersList= list
-      console.log("listado", this.usersList);
-      
     }
   })
 }

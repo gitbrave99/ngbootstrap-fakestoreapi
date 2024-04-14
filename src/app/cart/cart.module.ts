@@ -6,11 +6,13 @@ import { CartHomePageComponent } from './pages/cart-home-page/cart-home-page.com
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from "../shared/shared.module";
+import { TotalQuantityByCartPipe } from './pipes/total-quantity-by-cart.pipe';
 
 
 @NgModule({
     declarations: [
-        CartHomePageComponent
+        CartHomePageComponent,
+        TotalQuantityByCartPipe
     ],
     exports: [
         CartHomePageComponent

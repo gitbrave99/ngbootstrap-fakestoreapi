@@ -1,39 +1,51 @@
 <div [class]="'modal fade'" [class.show]="isModalOPen" [style]="{'display':isModalOPen?'block':'none'}"
     id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">User Cart</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cart List</h1>
                 <button type="button" class="btn-close" (click)="onHideModal()"></button>
             </div>
             <div class="modal-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered  table-hover">
-                        <thead class="table-dark">
+                    <table class="table table-bordered text-center table-hover" *ngFor="let item of cartUserList; let i=index">
+                        <thead class="text-center">
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Product Id</th>
-                                <th scope="col">Quantity</th>
+                                <th class="bg-secondary text-light" scope="col">No Cart</th>
+                                <th class="bg-secondary text-light" scope="col">{{item.id}}</th>
+                            </tr>
+                            <tr>
+                                <th class="bg-dark text-light" scope="col">Date</th>
+                                <th class="bg-secondary text-light" scope="col">{{item.date | date:'yyyy-MM-dd'}}</th>
+                            </tr>
+                            <tr>
+                                <th class="bg-dark text-light" scope="col">Product Id</th>
+                                <th class="bg-dark text-light" scope="col">Quantity</th>
                             </tr>
                         </thead>
                         <tbody clas>
-                            <tr *ngFor="let item of cartUserList">
-                                
+                            <tr *ngFor="let prod of item.products">
+                                <td>{{prod.productId}}</td>
+                                <td>{{prod.quantity}}</td>
                             </tr>
                         </tbody>
-                        <tfoot class="text-end bg-secondary">
+                        <tfoot class="text-center bg-secondary">
                             <tr>
-                                <td colspan="2">Total Quantity:</td>
-                                <td> 12</td>
+                                <td class="text-light bg-dark">Products:</td>
+                                <td class="text-light bg-secondary">{{item.products.length}}</td>
                             </tr>
                             <tr>
-                                <td colspan="2">Total Cart:</td>
-                                <td> 12</td>
+                                <td class="text-light bg-dark">Quantity:</td>
+                                <td class="text-light bg-secondary">{{item.products | getQuantityCart}}</td>
+                                <!-- <td class="text-light bg-secondary">{{getQuantityProducts(item.products) | getQuantityCart}}</td> -->
                             </tr>
                         </tfoot>
                     </table>
                 </div>
-
+                <ng-template [ngIf]="cartUserList.length<1">
+                    <h1 class="text-center ">No Cart</h1>
+                </ng-template>
             </div>
         </div>
     </div>
+</div>

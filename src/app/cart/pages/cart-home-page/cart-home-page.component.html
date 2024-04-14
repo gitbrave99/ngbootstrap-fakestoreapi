@@ -54,19 +54,20 @@
                 <td>{{cart.userId}}</td>
                 <td>{{cart.date}}</td>
                 <td>{{cart.products.length}}</td>
-                <td>{{getTotalQuantityByCart(cart.products) }}</td>
+                <td>{{cart.products | totalQuantityByCart}}</td>
+                <!-- <td>{{getTotalQuantityByCart(cart.products) }}</td> -->
             </tr>
         </ng-template>
     </tbody>
     <tfoot>
         <tr>
-            <td class="text-end" colspan="3"><b>Total Products:</b></td>
+            <td class="text-end" colspan="3"><b>Products:</b></td>
             <td class="text-center">
                 <b>{{totalProducts}}</b>
             </td>
         </tr>
         <tr>
-            <td class="text-end" colspan="4"><b>Total Quantity:</b></td>
+            <td class="text-end" colspan="4"><b>Quantity:</b></td>
             <td class="text-center"> <b>{{totalquantity}}</b></td>
         </tr>
     </tfoot>

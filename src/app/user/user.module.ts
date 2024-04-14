@@ -6,13 +6,15 @@ import { UserHomePageComponent } from './pages/user-home-page/user-home-page.com
 import { TableUsersComponent } from './components/table-users/table-users.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MdCartTableComponent } from './components/md-cart-table/md-cart-table.component';
+import { GetQuantityCartPipe } from './pipes/get-quantity-cart.pipe';
 
 
 @NgModule({
   declarations: [
     UserHomePageComponent,
     TableUsersComponent,
-    MdCartTableComponent
+    MdCartTableComponent,
+    GetQuantityCartPipe
   ],
   imports: [
     CommonModule,

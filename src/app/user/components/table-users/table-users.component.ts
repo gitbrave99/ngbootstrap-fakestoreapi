@@ -14,6 +14,7 @@ export class TableUsersComponent {
   public idUserSelected:number=0;
   public cartUserList:Cart[]=[];
   public productList:Product[]=[];
+  
 
 
 
@@ -36,15 +37,18 @@ export class TableUsersComponent {
   }
 
   onSelectUser(id:number){
-    this.idUserSelected=id
-    console.log("selected user: ", id);
+    this.idUserSelected=id;
     this.userService.getCartByUser(id)
     .subscribe((data)=>{
       console.log("seec: ", data);
       this.showModal();
       this.cartUserList= data
-
-      
+      if (data) {
+        // this.productList =data.flatMap(carts=> carts.products)
+        // console.log("data = ", this.productList);
+        
+      }
+            
     })
   }
 

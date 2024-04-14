@@ -34,7 +34,7 @@
         <td>{{item.phone}}</td>
         <td>
           <button type="button" class="btn btn-primary" (click)="onSelectUser(item.id)">
-            See Cart
+            <i class="bi bi-eye-fill"></i>
           </button>
         </td>
       </tr>
@@ -42,4 +42,4 @@
   </table>
 </div>
 
-<app-md-cart-table [isModalOPen]="isOpenModal" (hideModal)="hideModal()" [cartUserList]="cartUserList"/>
+<app-md-cart-table [isModalOPen]="isOpenModal" (hideModal)="hideModal()" [cartUserList]="cartUserList" />
