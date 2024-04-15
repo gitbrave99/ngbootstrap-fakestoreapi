@@ -23,7 +23,7 @@ export class ProductHomePageComponent implements OnInit {
   public isModalDeleteOpen: boolean = false;
   public isOpenNotification: boolean = false;
   public isAscOrder: boolean = true;
-  public isLoading:boolean=false;
+  public isLoading: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -45,39 +45,39 @@ export class ProductHomePageComponent implements OnInit {
       });
   }
 
-  public loadProducts(sortMethod:string="asc") {
+  public loadProducts(sortMethod: string = "asc") {
     this.selectedCategory = "none";
-    this.isAscOrder= sortMethod==='asc'?true:false;
-    this.isLoading=!this.isLoading;
+    this.isAscOrder = sortMethod === 'asc' ? true : false;
+    this.isLoading = !this.isLoading;
     this.productService.getAllProducts(sortMethod)
       .subscribe({
-        next:(resprod)=>{
-          this.listProduct = resprod; 
+        next: (resprod) => {
+          this.listProduct = resprod;
         },
-        error:(errr)=>{
+        error: (errr) => {
           console.log("eeror: ", errr);
-          
+
         },
-        complete:()=>{
-          this.isLoading=false
+        complete: () => {
+          this.isLoading = false
         }
       });
   }
 
-  public loadProductsByCategory(pCategory: string, sortMethod:string="asc") {
+  public loadProductsByCategory(pCategory: string, sortMethod: string = "asc") {
     this.selectedCategory = pCategory;
-    this.isAscOrder= sortMethod==='asc'?true:false;
-    this.isLoading=!this.isLoading;
-    this.categoryService.getProductByCategory(pCategory,sortMethod)
+    this.isAscOrder = sortMethod === 'asc' ? true : false;
+    this.isLoading = !this.isLoading;
+    this.categoryService.getProductByCategory(pCategory, sortMethod)
       .subscribe({
-        next:(resProd) => {
+        next: (resProd) => {
           this.listProduct = resProd;
         },
-        error:(err)=>{
+        error: (err) => {
 
         },
-        complete:() => {
-          this.isLoading=false;
+        complete: () => {
+          this.isLoading = false;
         }
       })
   }
@@ -126,12 +126,12 @@ export class ProductHomePageComponent implements OnInit {
     this.isAscOrder = !this.isAscOrder;
     let categorySorted = this.isAscOrder ? "asc" : "desc"
     console.log("is sorted: ", this.isAscOrder);
-    
-    if (this.selectedCategory==="none") {
+
+    if (this.selectedCategory === "none") {
       this.loadProducts(categorySorted);
       return;
     }
-    this.loadProductsByCategory(this.selectedCategory,categorySorted)
+    this.loadProductsByCategory(this.selectedCategory, categorySorted)
 
   }
 
