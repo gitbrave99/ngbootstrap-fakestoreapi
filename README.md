@@ -1,36 +1,26 @@
 # FakeStore App
-This app is building with:
-- Bootstrap 5
+App Content
+- Category Page: Show all the categories in btn group
+
+- Page Product – Displays categories in a “button group,” including the number of products for each category in a badge and a rating button. The table shows the products of the selected category; These can be sorted in ascending or descending order by product ID. In Each Product the information can be displayed in a modal and can be deleted; when deleting it shows a modal to confirm the action and then when the product is deleted it shows a toast message.
+
+- Cart Page: Carts can be sorted, limit the number of rows and search by date range.
+
+- User Page: For each user, display the cart list in a modal.
+
+  Endpoints consumed:
+  - Category
+  - Products
+  - Cart
+  - User   
+  
+## Stack 
+- Bootstrap 5.3
+- Bootstrap Icons 1.11
 - Angular v17 with modules (--standalone false)
 - FakeStore API
 
-
-
-Visit the page in progress: https://gitbrave99.github.io/ngbootstrap-fakestoreapi/category
-
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Run the project
+- Run `npm install` to install all dependencies
+- Run `ng serve` to start de project or `ng serve -o` to open it in the default browser. Also `ng serve --port=portNumber` can be used to open it in a specific port.
+- Navitate to `http://localhost:4200/`
